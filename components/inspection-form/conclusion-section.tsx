@@ -25,7 +25,7 @@ export default function ConclusionSection({ register }: ConclusionSectionProps) 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div className="space-y-2.5">
           <Label htmlFor="pressure" className="text-sm font-semibold text-foreground/80">
-            Рдов (mbar)
+            Рраб (mbar)
           </Label>
           <Input
             id="pressure"

@@ -70,18 +70,7 @@ export default function InspectionsList({ register, watch, setValue }: Inspectio
                       className="h-11"
                     />
                   </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="otherMessage" className="text-sm font-semibold text-foreground/80">
-                      Съобщение
-                    </Label>
-                    <Textarea
-                      id="otherMessage"
-                      {...register("otherMessage")}
-                      placeholder="Въведете съобщение..."
-                      rows={3}
-                      className="resize-none"
-                    />
-                  </div>
+                  {/* otherMessage removed from here — use the inspection notes area below for message input */}
                 </div>
               )}
 
@@ -105,18 +94,28 @@ export default function InspectionsList({ register, watch, setValue }: Inspectio
                 {!inspection.goodCondition && (
                   <div className="space-y-2.5 pl-8 pt-2">
                     <Label
-                      htmlFor={`notes-${inspection.id}`}
+                      htmlFor={inspection.id === 8 ? "otherMessage" : `notes-${inspection.id}`}
                       className="text-sm font-semibold text-foreground/80"
                     >
                       Съобщение:
                     </Label>
-                    <Textarea
-                      id={`notes-${inspection.id}`}
-                      {...register(`inspections.${index}.notes`)}
-                      placeholder="Въведете описание на проблема..."
-                      rows={3}
-                      className="resize-none"
-                    />
+                    {inspection.id === 8 ? (
+                      <Textarea
+                        id="otherMessage"
+                        {...register("otherMessage")}
+                        placeholder="Въведете съобщение..."
+                        rows={3}
+                        className="resize-none"
+                      />
+                    ) : (
+                      <Textarea
+                        id={`notes-${inspection.id}`}
+                        {...register(`inspections.${index}.notes`)}
+                        placeholder="Въведете описание на проблема..."
+                        rows={3}
+                        className="resize-none"
+                      />
+                    )}
                   </div>
                 )}
               </div>
